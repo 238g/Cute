@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>でろーんの森</title>
+	<script type="text/javascript">
+		var TogetherJSConfig_siteName = 'でろーんの森';
+		var TogetherJSConfig_toolName = 'ツール';
+		var TogetherJSConfig_disableWebRTC = true;
+	</script>
+	<script src="https://togetherjs.com/togetherjs-min.js"></script>
+	
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<!--
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.js"
+		integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+		crossorigin="anonymous"></script>
+  -->
+  <!-- <script src="./js/public/sketch.js"></script> -->
+	<script src="./js/public/sketch.min.js"></script>
+	<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" type="text/css" href="./public/bootstrap.css"> -->
+  <link rel="stylesheet" type="text/css" href="./css/public/bootstrap.min.css">
+	<style type="text/css">
+		.container {
+			margin-bottom: 100px;
+		}
+    canvas {
+      background: #ffffff;
+    }
+	</style>
+</head>
+<body>
+  <button id="StartBtn" onclick="TogetherStart();">ルームの開始 / ルームの初期化</button>
+  <div class="container">
+    <section class="body-content row" id="sketchapp" style="margin-left: 0px; margin-right: 0px;">
+        <h1 style="margin-bottom: 20px">でろーんの森</h1>
+        <!-- <a class="pull-right tjsbutton" onclick="TogetherJS(this); return false;"> -->
+          <!-- <img src="https://togetherjs.com/images/start-togetherjs-blue.png" style="width: 125px;"></img> -->
+        <!-- </a> -->
+        <div class="clearfix"></div>
+        <div id="sketchContainer" style="width: 100%; border: 1px solid rgba(0,0,0,0.2);">
+          <canvas id="sketch"></canvas>
+        </div>
+        <div class="btn-group btn-group-justified" style="margin-left: auto; margin-right: auto;">
+          <a class="btn btn-info" style="width: 35%;">
+          	<p>ここで色を変える</p>
+          	<input id="color-dialog" value="#ffffff" type="color" style="width: 50%;height: 80px;">
+          </a>
+          <a class="btn btn-success plus-size" style="width: 15%;">
+            <p>フォントの大きさ</p>
+            <i class="fa fa-plus-square"></i>
+          </a>
+          <!--
+          <a class="btn btn-warning clear" style="width: 15%;">
+            <i class="fa fa-times-circle"></i>
+          </a>
+      	  -->
+          <a class="btn btn-danger minus-size" style="width: 15%;">
+            <p>フォントの大きさ</p>
+            <i class="fa fa-minus-square"></i>
+          </a>
+          <a class="btn btn-default eraser bottom-button" style="width: 35%; border-top-width: 0px;">
+            <p>消しゴム</p>
+            <i class="fa fa-eraser"></i>
+          </a>
+       </div>
+       <div style="margin-top: 30px;">
+        <button onclick="saveCanvas('png');">PNGで保存</button>
+        <button onclick="saveCanvas('jpeg');">JPEGで保存</button>
+       </div>
+    </section>
+  </div>
+
+<script src="./js/deroon_forest/TS.js"></script>
+</body>
+</html>
