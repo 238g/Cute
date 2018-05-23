@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>複つべ</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<!-- Icons -->
 	<link rel="apple-touch-icon" sizes="57x57" href="images/Fukutube/favicons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="images/Fukutube/favicons/apple-icon-60x60.png">
@@ -20,6 +22,7 @@
 	<meta name="msapplication-TileColor" content="#000000">
 	<meta name="msapplication-TileImage" content="images/Fukutube/favicons/ms-icon-144x144.png">
 	<link rel="shortcut icon" type="image/x-icon" href="images/Fukutube/favicons/favicon.ico">
+
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var tag = document.createElement('script');
@@ -38,9 +41,12 @@
 	</style>
 </head>
 <body>
-	<h>複つべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
-	<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを複窓するなら複つべ！" data-lang="ja" data-hashtags="複つべ">ツイート</a>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<div class="title">
+		<h>複つべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを複窓するなら複つべ！" data-lang="ja" data-hashtags="複つべ">ツイート</a><a href="Raditube.html">ラジつべ</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<button class="hide_title">タイトル系統を隠してしまう(戻す時はページを更新してね)</button>
+	</div>
 	<div id="workspace"></div>
 	<script type="text/javascript">
 		var sizes = ['640x360','480x270','320x180','128x72','800x450','960x540'];
@@ -77,6 +83,9 @@
 				});
 			}
 		});
+		$('.hide_title').click(function () {
+			$('.title').hide();
+		});
 		function getYoutubeID (url) {
 			var a = url.split('?');
 			if (a[1]) {
@@ -89,5 +98,16 @@
 			return false;
 		}
 	</script>
+
+	<div style="display: none;">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106767228-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-106767228-2');
+		</script>
+	</div>
 </body>
 </html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ラジつべ</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="images/Raditube/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/Raditube/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/Raditube/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/Raditube/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/Raditube/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/Raditube/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/Raditube/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/Raditube/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/Raditube/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="images/Raditube/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/Raditube/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/Raditube/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/Raditube/favicons/favicon-16x16.png">
+	<link rel="manifest" href="images/Raditube/favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="images/Raditube/favicons/ms-icon-144x144.png">
+	<link rel="shortcut icon" type="image/x-icon" href="images/Raditube/favicons/favicon.ico">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.slidecontainer {
+			width: 100%;
+		}
+		.slider {
+			-webkit-appearance: none;  /* Override default CSS styles */
+			appearance: none;
+			width: 200px; /* Full-width */
+			height: 15px; /* Specified height */
+			border-radius: 5px;
+			background: #d3d3d3; /* Grey background */
+			outline: none; /* Remove outline */
+			opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+			-webkit-transition: .2s; /* 0.2 seconds transition on hover */
+			transition: opacity .2s;
+		}
+		.slider:hover {
+			opacity: 1; /* Fully shown on mouse-over */
+		}
+		
+		/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */		 
+		.slider::-webkit-slider-thumb {
+			-webkit-appearance: none; /* Override default look */
+			appearance: none;
+			width: 25px; /* Set a specific slider handle width */
+			height: 25px; /* Slider handle height */
+			border-radius: 50%;
+			background: #4CAF50; /* Green background */
+			cursor: pointer; /* Cursor on hover */
+		}
+		
+		.slider::-moz-range-thumb {
+			width: 25px; /* Set a specific slider handle width */
+			height: 25px; /* Slider handle height */
+			border-radius: 50%;
+			background: #4CAF50; /* Green background */
+			cursor: pointer; /* Cursor on hover */
+		}
+		#workspace {
+			margin: auto;
+			overflow: auto;
+		}
+		#ytplayer {
+			display: none;
+		}
+		p: {
+			float: left;
+		}
+		input: {
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">
+		<h>ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを聴くだけならラジつべ！" data-lang="ja" data-hashtags="ラジつべ">ツイート</a><a href="Fukutube.html">複つべ</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		<button class="hide_title">タイトル系統を隠してしまう(戻す時はページを更新してね)</button>
+	</div>
+	<div id="workspace">
+		<div class="area">
+			<input id="input" class="input" type="text">
+			<button class="OK">OK</button>
+			<button class="toggle">動画を表示する</button>
+			<button class="pause">一時停止</button>
+			<div id="ytplayer"></div>
+		</div>
+	</div>
+	<div class="slidecontainer">
+		<p>音量: <span id="volume"></span> <input type="range" min="0" max="100" value="100" class="slider" id="sliderRange"></p>
+	</div>
+	<script type="text/javascript">
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/player_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
+		var slider = document.getElementById("sliderRange");
+		var output = document.getElementById("volume");
+		var player;
+		output.innerHTML = slider.value; // Display the default slider value
+		// Update the current slider value (each time you drag the slider handle)
+		slider.oninput = function() {
+			var volume = this.value;
+			output.innerHTML = ("00" + volume).slice(-3);
+			player&&player.setVolume(volume);
+		}
+		$('.OK').click(function () {
+			var input_text = $(this).parent().find('.input').val();
+			var youtube_id = getYoutubeID(input_text);
+			if (youtube_id) {
+				if (player) player.destroy();
+				player = new YT.Player('ytplayer',{
+					width:640,height:320,videoId:youtube_id,
+					playerVars: {
+						playsinline: 1,
+						autoplay: 1,
+					},
+					events: {
+						onReady: onPlayerReady,
+					},
+				});
+			}
+		});
+		var playerVisible = false;
+		var showText = '動画を表示する';
+		var hideText = '動画を隠す';
+		$('.toggle').click(function () {
+			if (playerVisible) {
+				playerVisible = false;
+				$('#ytplayer').hide();
+				$(this).text(showText);
+			} else {
+				playerVisible = true;
+				$('#ytplayer').show();
+				$(this).text(hideText);
+			}
+		});
+		var pause = false;
+		var pauseText = '一時停止';
+		var resumeText = '再開する';
+		$('.pause').click(function () {
+			if (pause) {
+				pause = false;
+				player&&player.playVideo();
+				$(this).text(pauseText);
+			} else {
+				pause = true;
+				player&&player.pauseVideo();
+				$(this).text(resumeText);
+			}
+		});
+		$('.hide_title').click(function () {
+			$('.title').hide();
+		});
+		function onPlayerReady () {
+			var volume = player.getVolume();
+			$('#sliderRange').val(volume);
+			output.innerHTML = ("00" + volume).slice(-3);
+		}
+		function getYoutubeID (url) {
+			var a = url.split('?');
+			if (a[1]) {
+				var b = a[1].split('&');
+				for (var c in b) {
+					var d = b[c].split('=');
+					if (d[0] && d[0] == 'v') return d[1];
+				}
+			}
+			return false;
+		}
+	</script>
+
+	<div style="display: none;">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106767228-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-106767228-2');
+		</script>
+	</div>
+</body>
+</html>
