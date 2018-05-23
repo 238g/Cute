@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>複つべ</title>
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="images/Fukutube/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/Fukutube/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/Fukutube/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/Fukutube/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/Fukutube/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/Fukutube/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/Fukutube/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/Fukutube/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/Fukutube/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="images/Fukutube/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/Fukutube/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/Fukutube/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/Fukutube/favicons/favicon-16x16.png">
+	<link rel="manifest" href="images/Fukutube/favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="images/Fukutube/favicons/ms-icon-144x144.png">
+	<link rel="shortcut icon" type="image/x-icon" href="images/Fukutube/favicons/favicon.ico">
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/player_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);
+	</script>
+	<style type="text/css">
+		#workspace {
+			margin: auto;
+			overflow: auto;
+		}
+		.area {
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<h>複つべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを複窓するなら複つべ！" data-lang="ja" hashtags="複つべ">ツイート</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	<div id="workspace"></div>
+	<script type="text/javascript">
+		var sizes = ['640x360','480x270','320x180','128x72','800x450','960x540'];
+		var option = '';
+		for (var k in sizes) option += '<option value='+sizes[k]+'>'+sizes[k]+'</option>';
+		for (var i=1;i<=10;i++) {
+			$('#workspace').append(
+				'<div class="area">'
+				+'<input id="input_'+i+'" class="input" type="text">'
+				+'<select>'
+				+option
+				+'</select>'
+				+'<button class="OK">OK</button><br>'
+				+'<div id="ytplayer_'+i+'"></div><br>'
+				+'</div>'
+			);
+		}
+		var players = {};
+		$('.OK').click(function () {
+			var area_elem = $(this).parent();
+			var sizes = area_elem.find('select').find(':selected').val().split('x');
+			var input_elem = area_elem.find('.input');
+			var id = (input_elem[0].id).split('_')[1];
+			var input_text = input_elem.val();
+			var youtube_id = getYoutubeID(input_text);
+			if (youtube_id) {
+				if (players[id]) players[id].destroy();
+				players[id] = new YT.Player('ytplayer_'+id,{
+					width:sizes[0],height:sizes[1],videoId:youtube_id,
+					playerVars: {
+						playsinline: 1,
+						autoplay: 1,
+					},
+				});
+			}
+		});
+		function getYoutubeID (url) {
+			var a = url.split('?');
+			if (a[1]) {
+				var b = a[1].split('&');
+				for (var c in b) {
+					var d = b[c].split('=');
+					if (d[0] && d[0] == 'v') return d[1];
+				}
+			}
+			return false;
+		}
+	</script>
+</body>
+</html>
