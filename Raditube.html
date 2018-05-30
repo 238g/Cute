@@ -24,6 +24,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/Raditube/favicons/favicon.ico">
 
 	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="./css/public/bootstrap.min.css">
 	<style type="text/css">
 		.slidecontainer {
 			width: 100%;
@@ -78,24 +79,34 @@
 	</style>
 </head>
 <body>
-	<div class="title">
-		<h>ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを聴くだけならラジつべ！" data-lang="ja" data-hashtags="ラジつべ">ツイート</a><a href="Fukutube.html">複つべ</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-		<button class="hide_title">タイトル系統を隠してしまう(戻す時はページを更新してね)</button>
-	</div>
-	<div id="workspace">
-		<div class="area">
-			<input id="input" class="input" type="text">
-			<button class="OK">OK</button>
-			<button class="toggle">動画を表示する</button>
-			<button class="pause">一時停止</button>
-			<div id="ytplayer"></div>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="navbar-brand">ラジつべ</div>
+			</div>
+			<a href="Fukutube.html"><button class="btn btn-success navbar-btn">複つべ</button></a>
+			<a href="https://twitter.com/i10v35w33t" target="_blank"><button class="btn btn-info navbar-btn">ご意見・ご要望</button></a>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-text="YouTubeを聴くだけならラジつべ！" data-lang="ja" data-hashtags="ラジつべ">ツイート</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		</div>
+	</nav>
+	<div class="container">
+		<h class="title">ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+		<button class="btn-danger hide_title">タイトル系統を隠してしまう(戻す時はページを更新してね)</button>
+		<div id="workspace">
+			<div class="area">
+				<input id="input" class="input" type="text">
+				<button class="OK btn-warning">OK</button>
+				<button class="toggle btn-success">動画を表示する</button>
+				<button class="pause btn-primary">一時停止</button>
+				<div id="ytplayer"></div>
+			</div>
+		</div>
+		<div class="slidecontainer">
+			<p>音量: <span id="volume"></span> <input type="range" min="0" max="100" value="100" class="slider" id="sliderRange"></	p>
 		</div>
 	</div>
-	<div class="slidecontainer">
-		<p>音量: <span id="volume"></span> <input type="range" min="0" max="100" value="100" class="slider" id="sliderRange"></p>
-	</div>
+
 	<script type="text/javascript">
 		var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/player_api";
@@ -158,6 +169,8 @@
 		});
 		$('.hide_title').click(function () {
 			$('.title').hide();
+			$('.hide_title').hide();
+			$('.navbar').hide();
 		});
 		function onPlayerReady () {
 			var volume = player.getVolume();
