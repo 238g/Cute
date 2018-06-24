@@ -32,12 +32,13 @@
 	src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/locale-all.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css">
+
+	<script src="js/lib/moment.min.js"></script>
+	<script src="js/lib/fullcalendar.min.js"></script>
+	<script src="js/lib/locale-all.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/lib/fullcalendar.min.css">
 	<link href='https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.min.css' rel='stylesheet' />
-	<link rel="stylesheet" type="text/css" href="./css/public/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
 </head>
 <style>
 	body {
@@ -72,35 +73,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-
-	//////////////////////////////////////// DataBase
-	// TODO this->csv
-	var events = [
-		{
-			title:'event1',
-			start:'2018-06-22',
-			color:'pink',
-			img:'images/Fukutube/favicons/apple-icon-60x60.png',
-			desc:'aaaaaa',//TODO
-		},
-		{
-			title:'event1aaaaaaaaaaaaaaa\njfkljklfjel',
-			start:'2018-06-22',
-			color:'red',
-			img:null,
-			desc:'aaaaaa',//TODO
-		},
-		{
-			title:'event1',
-			start:'2018-06-21',
-			color:'green',
-			img:null,
-			desc:'aaaaaa',//TODO
-		},
-	];
-	//////////////////////////////////////// DataBase
-
-
+	var events=null;
 
 	//////////////////////////////////////// fullCalendar
 	$('#calendar').fullCalendar({
@@ -120,7 +93,20 @@ $(document).ready(function() {
 		defaultView:'listMonth',
 		listDayFormat:'YYYY-MM-D',
 		listDayAltFormat:'YYYY-MM-D',
-		events:events,
+		events:function(start,end,timezone,callback){
+			$.ajax({
+				type:'GET',
+				url:'js/VtuberChronology/Events.csv',
+				dataType:'text',
+				cache:!1,
+				success:function(csv){
+					events=formatCsv(csv);
+					if(events==!1)return !1;
+					callback(events);
+				},
+				error:function(a,b,c){console.log(a,b,c);return !1;},
+			});
+		},
 		eventClick:function(calEv,jsEv,view){
 			// TODO
 			console.log(calEv,jsEv,view);
@@ -130,7 +116,7 @@ $(document).ready(function() {
 		theme:!0,
 		themeSystem:'jquery-ui',
 		eventRender:function(ev,el){
-			ev.img&&$(el[0]).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
+			ev.img!=0&&$(el[0]).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
 		},
 	});
 	//////////////////////////////////////// fullCalendar
@@ -152,6 +138,20 @@ $(document).ready(function() {
 	//////////////////////////////////////// Change Language
 
 });
+
+function formatCsv(csv){
+	var res=[];
+	var rows=csv.slice(0,-1).split('\n');
+	var header=rows[0].split(',');
+	for (var rowNum in rows) {
+		if(rowNum==0)continue;
+		var row=rows[rowNum].split(',');
+		var tmp={};
+		for(var columnNum in row)tmp[header[columnNum]]=row[columnNum];
+		res.push(tmp);
+	}
+	return res;
+}
 </script>
 
 	<div style="display: none;">
