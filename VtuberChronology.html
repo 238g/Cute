@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Icons -->
+	<!--
 	<link rel="apple-touch-icon" sizes="57x57" href="images/VtuberChronology/favicons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="images/VtuberChronology/favicons/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/VtuberChronology/favicons/apple-icon-72x72.png">
@@ -22,6 +23,7 @@
 	<meta name="msapplication-TileColor" content="#000000">
 	<meta name="msapplication-TileImage" content="images/VtuberChronology/favicons/ms-icon-144x144.png">
 	<link rel="shortcut icon" type="image/x-icon" href="images/VtuberChronology/favicons/favicon.ico">
+	-->
 
 	<!-- Vendor -->
 	<script
@@ -70,6 +72,7 @@
 	</nav>
 
 	<div id='calendar'></div>
+	<div id="dialog-modal" title="Title" style="display: none;"><p>Contents</p></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -96,7 +99,7 @@ $(document).ready(function() {
 		events:function(start,end,timezone,callback){
 			$.ajax({
 				type:'GET',
-				url:'js/VtuberChronology/Events.csv',
+				url:'datas/VtuberChronology/Events.csv',
 				dataType:'text',
 				cache:!1,
 				success:function(csv){
@@ -107,16 +110,36 @@ $(document).ready(function() {
 				error:function(a,b,c){console.log(a,b,c);return !1;},
 			});
 		},
-		eventClick:function(calEv,jsEv,view){
-			// TODO
-			console.log(calEv,jsEv,view);
+		eventClick:function(ev/*,jsEv,view*/){
+			var dialog=$('#dialog-modal');
+			dialog.dialog({
+				height:window.innerHeight*.5,
+				width:window.innerWidth*.5,
+				modal:!0,
+				show:500,
+				title:ev.title,
+			});
+			dialog.html(
+				'<p>'+
+				(ev.title?'<p><b>'+ev.title+'</b></p>':'')+
+				(ev.descImg!=0?'<img src="'+ev.descImg+'" /><br>':ev.img!=0?'<img src="'+ev.img+'" /><br>':'')+
+				'<br>'+
+				(ev.subTitle?'<p>'+ev.subTitle+'</p>':'')+
+				(ev.desc?'<p>'+ev.desc+'</p>':'')+
+				'</p>'
+			);
 		},
 		noEventsMessage:'NONE',
 		allDayText:'',
 		theme:!0,
 		themeSystem:'jquery-ui',
-		eventRender:function(ev,el){
-			ev.img!=0&&$(el[0]).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
+		eventRender:function(ev,elem){
+			var el=elem[0];
+			var ttl=$(el).find('.fc-list-item-title');
+			ttl.css('font-weight','bold');
+			ev.subTitle&&ttl.append('<p>'+ev.subTitle+'</p>');
+			// ev.desc&&ttl.append('<p>'+ev.desc+'</p>');
+			ev.img!=0&&$(el).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
 		},
 	});
 	//////////////////////////////////////// fullCalendar
