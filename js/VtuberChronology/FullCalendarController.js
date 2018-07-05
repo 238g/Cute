@@ -42,11 +42,15 @@ $(document).ready(function() {
 			});
 			dialog.html(
 				'<p>'+
-				(ev.title?'<p><b>'+ev.title+'</b></p>':'')+
-				(ev.descImg?'<img src="'+ev.descImg+'" /><br>':ev.img?'<img src="'+ev.img+'" /><br>':'')+
-				'<br>'+
-				(ev.subTitle?'<p>'+ev.subTitle+'</p>':'')+
-				(ev.desc?'<p>'+ev.desc+'</p>':'')+
+					(ev.title?'<p><b>'+ev.title+'</b></p>':'')+
+					(ev.descImg?'<img src="'+ev.descImg+'" /><br>':ev.img?'<img src="'+ev.img+'" /><br>':'')+
+					'<br>'+
+					(ev.subTitle?'<p>'+ev.subTitle+'</p>':'')+
+					(ev.desc?'<p>'+ev.desc+'</p>':'')+
+					'<p><b>'+
+						(ev.yt?'<a href="'+ev.yt+'" target="_blank"> YouTube </a>':'')+
+						(ev.twitter?'<a href="'+ev.twitter+'" target="_blank"> Twitter </a>':'')+
+					'</b></p>'+
 				'</p>'
 			);
 		},
@@ -61,6 +65,11 @@ $(document).ready(function() {
 			ev.subTitle&&ttl.append('<p>'+ev.subTitle+'</p>');
 			// ev.desc&&ttl.append('<p>'+ev.desc+'</p>');
 			ev.img&&$(el).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
+		},
+		loading:function(bool){
+			// TODO loading animation
+			// $('#loading').toggle(bool);
+			// console.log(bool);
 		},
 	});
 	//////////////////////////////////////// fullCalendar
