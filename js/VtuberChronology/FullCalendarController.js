@@ -28,7 +28,7 @@ $(document).ready(function() {
 					if(events==!1)callback([{title:'通信エラー',start:Ymd()}]);
 					callback(events);
 				},
-				// error:function(a,b,c){console.log(a,b,c);return !1;},
+				error:function(a,b,c){alart(a+b+c);return callback([{title:'通信エラー',start:Ymd()}]);},
 			});
 		},
 		eventClick:function(ev/*,jsEv,view*/){
