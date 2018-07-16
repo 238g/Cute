@@ -14,7 +14,7 @@ $(document).ready(function() {
 		},
 		locale:'ja',
 		editable:!1,
-		defaultView:'month',
+		defaultView:__defaultView,
 		listDayFormat:'YYYY-MM-D',
 		listDayAltFormat:'YYYY-MM-D',
 		events:function(start,end,timezone,callback){
