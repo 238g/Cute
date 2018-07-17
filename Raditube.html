@@ -112,8 +112,11 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h class="title">ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
-		<button class="btn-danger hide_title">タイトル系統を隠してしまう(戻す時はページを更新してね)</button>
+		<div class="row">
+			<h class="title">ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+			<button class="btn-danger hide_title">タイトル系統を隠してしまうボタン(戻す時はページを更新してね)</button>
+		</div>
+
 		<div id="workspace">
 			<div class="area">
 				<input id="input" class="input" type="text">
@@ -123,6 +126,7 @@
 				<div id="ytplayer"></div>
 			</div>
 		</div>
+		
 		<div class="slidecontainer">
 			<p>音量: <span id="volume"></span> <input type="range" min="0" max="100" value="100" class="slider" id="sliderRange"></	p>
 		</div>
