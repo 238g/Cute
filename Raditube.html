@@ -42,7 +42,12 @@
 	<link rel="shortcut icon" type="image/x-icon" href="images/Raditube/favicons/favicon.ico">
 
 	<!-- Vendor -->
-	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script 
+	src="https://code.jquery.com/jquery-3.3.1.js" 
+	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" 
+	crossorigin="anonymous"></script>
+
+	<script src="js/lib/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
 	<style type="text/css">
 		.slidecontainer {
@@ -98,31 +103,65 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
+	<nav class="navbar navbar-inverse hide_target">
+		<div class="container">
 			<div class="navbar-header">
-				<div class="navbar-brand">ラジつべ</div>
+				<div class="navbar-brand">
+					<p>ラジつべ</p>
+				</div>
+				
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 			</div>
-			<a href="Fukutube.html"><button class="btn btn-success navbar-btn">複つべ</button></a>
-			<a href="VtuberChronology.html"><button class="btn btn-danger navbar-btn">VTuber年表</button></a>
-			<a href="https://238g.github.io/Parace/238Games.html" target="_blank"><button class="btn btn-danger navbar-btn">Vtuberゲーム</button></a>
-			<a href="https://twitter.com/i10v35w33t" target="_blank"><button class="btn btn-info navbar-btn">ご意見・ご要望</button></a>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-text="ラジオのようにYouTubeを視聴！これで画面を覗き見されても大丈夫！！" data-lang="ja" data-hashtags="ラジつべ">ツイート</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="Fukutube.html">
+							<button class="btn btn-success">複つべ</button>
+						</a>
+					</li>
+					<li>
+						<a href="VtuberChronology.html">
+							<button class="btn btn-danger">VTuber年表</button>
+						</a>
+					</li>
+					<li>
+						<a href="https://twitter.com/i10v35w33t" target="_blank">
+							<button class="btn btn-info">ご意見・ご要望</button>
+						</a>
+					</li>
+					<li>
+						<a href="https://238g.github.io/Parace/238Games.html" target="_blank">
+							<button class="btn btn-danger">Vtuberゲーム</button>
+						</a>
+					</li>			
+				</ul>
+			</div>
 		</div>
 	</nav>
+
 	<div class="container">
 		<div class="row">
-			<h class="title">ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
-			<button class="btn-danger hide_title">タイトル系統を隠してしまうボタン(戻す時はページを更新してね)</button>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10 hide_target">
+				<h>ラジつべ へようこそ！YoutubeのURLを入力してOKを押すと再生が始まります！</h>
+			</div>
+			<div class="col-sm-1 hide_target">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="ラジオのようにYouTubeを視聴！これで画面を覗き見されても大丈夫！！" data-lang="ja" data-hashtags="ラジつべ">ツイート</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			</div>
 		</div>
 
-		<div id="workspace">
+		<div id="workspace" class="row">
 			<div class="area">
-				<input id="input" class="input" type="text">
+				<input id="input" class="input bg-info" type="text">
 				<button class="OK btn-warning">OK</button>
 				<button class="toggle btn-success">動画を表示する</button>
 				<button class="pause btn-primary">一時停止</button>
+				<button class="btn-danger hide_btn">上部を隠す</button>
 				<div id="ytplayer"></div>
 			</div>
 		</div>
@@ -192,10 +231,14 @@
 				$(this).text(resumeText);
 			}
 		});
-		$('.hide_title').click(function () {
-			$('.title').hide();
-			$('.hide_title').hide();
-			$('.navbar').hide();
+		$('.hide_btn').click(function () {
+			if($('.hide_target').css('display') == 'block'){
+				$('.hide_btn').text('上部を表示');
+				$('.hide_target').hide();
+			}else{
+				$('.hide_btn').text('上部を隠す');
+				$('.hide_target').show();
+			}
 		});
 		function onPlayerReady () {
 			var volume = player.getVolume();
