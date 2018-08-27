@@ -49,7 +49,7 @@ $(document).ready(function() {
 					(ev.desc?'<p>'+ev.desc+'</p>':'')+
 					'<p><b>'+
 						(ev.yt?'<a href="'+ev.yt+'" target="_blank"> YouTube </a>':'')+
-						(ev.twitter?'<a href="'+ev.twitter+'" target="_blank"> Twitter </a>':'')+
+						(ev.twitter?'<a href="https://twitter.com/'+ev.twitter+'" target="_blank"> Twitter </a>':'')+
 					'</b></p>'+
 				'</p>'
 			);
