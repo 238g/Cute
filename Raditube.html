@@ -172,6 +172,7 @@
 				<button class="OK btn-warning">OK</button>
 				<button class="toggle btn-success">動画を表示する</button>
 				<button class="pause btn-primary">一時停止</button>
+				<button class="loop btn-info">ループさせる</button>
 				<button class="btn-danger hide_btn">上部を隠す</button>
 				<div id="ytplayer"></div>
 			</div>
@@ -210,6 +211,7 @@
 					},
 					events: {
 						onReady: onPlayerReady,
+						onStateChange: onPlayerStateChange,
 					},
 				});
 			}
@@ -242,6 +244,16 @@
 				$(this).text(resumeText);
 			}
 		});
+		var looping=!1,noloopText='ループさせる',loopingText='ループ中…';
+		$('.loop').click(function(){
+			if (looping) {
+				looping=!1;
+				$(this).text(noloopText);
+			} else {
+				looping=!0;
+				$(this).text(loopingText);
+			}
+		});
 		$('.hide_btn').click(function () {
 			if($('.hide_target').css('display') == 'block'){
 				$('.hide_btn').text('上部を表示');
@@ -255,6 +267,9 @@
 			var volume = player.getVolume();
 			$('#sliderRange').val(volume);
 			output.innerHTML = ("00" + volume).slice(-3);
+		}
+		function onPlayerStateChange(e){
+			if(e.data===YT.PlayerState.ENDED&&looping)player.playVideo();
 		}
 		function getYoutubeID (url) {
 			var a = url.split('?');
