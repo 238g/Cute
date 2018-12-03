@@ -1,0 +1,12 @@
+<script type="text/javascript">
+	function getRndColor(){
+		var l='0123456789ABCDEF';
+		var c='#';
+		for(var i=0;i<6;i++){
+			c+=l[Math.floor(Math.random()*16)];
+		}
+		return c;
+	}
+
+	for(var i=0;i<100;i++)document.write(getRndColor()+'<br>');
+</script>
