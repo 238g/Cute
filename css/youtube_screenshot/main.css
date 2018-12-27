@@ -1,0 +1,114 @@
+html,body {
+	margin: 0;
+	padding: 0;
+	background-color: #FBFEF4;
+	line-height: 1;
+	font-size: 12px;
+}
+
+.wrapper {
+	margin-bottom: 100px;
+}
+
+header {
+	margin: 0 auto;
+	max-width: 1000px;
+	padding: 40px 0 70px 0;
+	height: auto;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.title_area {
+	display: inline-block;
+	flex-direction: column;
+	margin-left: 10px;
+}
+
+.icon {
+	width: 60px;
+	height: 60px;
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.title {
+	font-size: 2rem;
+	line-height: 2.25rem;
+	color: #202124;
+	margin: 0;
+}
+
+.author {
+	letter-spacing: .02em;
+	font-family: 'Google Sans',Roboto,Arial,sans-serif;
+	font-size: 1.2rem;
+	line-height: 1.25rem;
+	color: #3c4043;
+	margin-top: 10px;
+	display: block;
+	margin-left: 10px;
+}
+
+.download {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.caption {
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.caption p {
+	font-size: 1.2rem;
+}
+
+.thumbnail {
+	margin-left: 20px;
+	border: outset 5px #f9cf40;
+	width: 460px;
+	height: 340px;
+}
+
+.ss_area {
+	margin: auto;
+	max-width: 1000px;
+	text-align: center;
+}
+
+.ss_area img {
+	border: outset 5px #00fa9a;
+}
+
+.description {
+	font-size: 1.2rem;
+	max-width: 800px;
+	margin: 50px auto;
+	line-height: 1.5;
+}
+
+.description h3 {
+	font-size: 1.5rem;
+}
+
+.description ul {
+	font-size: 1.5rem;
+}
+
+footer {
+	background-color: #d2d2d2;
+	padding-top:.5em;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+	text-align: center;
+	line-height:.5em;
+}

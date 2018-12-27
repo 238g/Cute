@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>YouTubeスクリーンショット - 紹介ページ</title>
+	<meta name="apple-mobile-web-app-title" content="YouTubeスクリーンショット - 紹介ページ">
+	<meta name="theme-color" content="#000000">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+
+	<meta name="keywords" content="スクリーンショット,SS,screenshot,YouTube,キャプチャ,拡張機能,chrome,Chrome拡張機能,撮る,撮影,静止画,シークバー,非表示,消したい,extension,ようつべ,ユーチューブ,バーチャルYouTuber,Vtuber,バーチャルユーチューバー,YouTuber,便利,ツール,簡単,保存,アプリ,機能,ソフトウェア,ダウンロード" />
+	<meta name="description" content="YouTube動画の画面をスクリーンショットとしてかんたんにキャプチャする拡張機能です。動画内の映像のみを画像として保存しますので、シークバーは画像に入りません🙌🙌ワンクリックで撮影できるのでとても便利🔰" />
+
+	<link rel="alternate" href="https://238g.github.io/Cute/youtube_screenshot.html" hreflang="jp" />
+	<link rel="alternate" href="https://238g.github.io/Cute/youtube_screenshot.html?lang=en" hreflang="en" />
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="HandheldFriendly" content="true" />
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- TwitterCard 876x438 -->
+	<!--
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@i10v35w33t" />
+	<meta property="og:url" content="https://238g.github.io/Cute/youtube_screenshot.html" />
+	<meta property="og:title" content="YouTubeスクリーンショット - 紹介ページ">
+	<meta property="og:description" content="YouTube動画の画面をスクリーンショットとしてかんたんにキャプチャする拡張機能です。動画内の映像のみを画像として保存しますので、シークバーは画像に入りません🙌🙌ワンクリックで撮影できるのでとても便利🔰">
+	<meta property="og:image" content="https://238g.github.io/Cute/images/youtube_screenshot/TwitterCard.jpg">
+	-->
+	
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="images/youtube_screenshot/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/youtube_screenshot/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/youtube_screenshot/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/youtube_screenshot/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/youtube_screenshot/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/youtube_screenshot/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/youtube_screenshot/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/youtube_screenshot/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/youtube_screenshot/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="images/youtube_screenshot/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/youtube_screenshot/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/youtube_screenshot/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/youtube_screenshot/favicons/favicon-16x16.png">
+	<link rel="manifest" href="images/youtube_screenshot/favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="images/youtube_screenshot/favicons/ms-icon-144x144.png">
+	<link rel="shortcut icon" type="image/x-icon" href="images/youtube_screenshot/favicons/favicon.ico">
+
+	<!-- Vendor -->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/youtube_screenshot/main.css">
+	<script src="js/public/env.js"></script>
+</head>
+<body>
+
+	<div class="wrapper">
+		<header>
+			<img class="icon" src="images/youtube_screenshot/icon_128.png">
+			<div class="title_area">
+				<h1 class="title">YouTubeスクリーンショット</h1>
+				<span class="author">開発者: 抹茶。(<a href="https://twitter.com/i10v35w33t" target="_blank" onclick="myGa('twitter','header','link');">@i10v35w33t</a>)</span>
+				<div class="download">
+					<p>🔻ダウンロードはこちら🔻</p>
+					<a href="https://chrome.google.com/webstore/detail/youtube%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88/iakmagcmcbgcohlpicboofpkeocpbolj" target="_blank" onclick="myGa('download','header','link');">YouTubeスクリーンショット - Chrome ウェブストア</a>
+				</div>
+				<div class="caption">
+					<h2>YouTube動画の画面をスクリーンショットとして<br>かんたんに撮影できる拡張機能です！</h2>
+					<p>カメラボタン(📷)を押した時のシーンを
+					<br>スクリーンショットとして保存します</p>
+					<p>動画内の映像のみを画像として保存しますので、
+					<br>シークバーは画像に入りません🙌🙌</p>
+					<p>ワンクリックで撮影できるのでとても便利🔰</p>
+					<p>※PCのGoogleChromeのみ</p>
+				</div>
+			</div>
+			<img class="thumbnail" src="images/youtube_screenshot/460x340.jpg">
+		</header>
+
+		<div class="ss_area">
+			<img src="https://lh3.googleusercontent.com/Yrfo6Uer4VYuj7AZg0M05lJRU6oXD0j7vsp1CRZchc6Pd22fjmYYS9ezW_4q0kzNm3eNaMqHqQ=w640-h400-e365">
+		</div>
+
+		<div class="description">
+			<h2>説明</h2>
+			<p>この『YouTubeスクリーンショット』は、Google Chromeの「Chrome拡張機能」として、
+				<br>公式サイトであるchromeウェブストアから配布されております。
+				<br>そのため、パソコンのGoogle Chromeブラウザからのみご利用いただけます。
+			</p>
+			<h3>💖こんな方へオススメ💖</h3>
+			<ul>
+				<li>YouTube動画の画面を静止画としてキャプチャ・撮影したい</li>
+				<li>生放送を見ながらスクリーンショットを撮りたい</li>
+				<li>動画のシークバー（再生バー）を非表示にさせたい / 画像から消したい</li>
+				<li>ワンクリックで簡単にスクリーンショットが撮りたい</li>
+			</ul>
+			<div class="download">
+				<h4>🔻ダウンロードはこちら🔻</h4>
+				<a href="https://chrome.google.com/webstore/detail/youtube%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88/iakmagcmcbgcohlpicboofpkeocpbolj" target="_blank" onclick="myGa('download','description','link');">YouTubeスクリーンショット - Chrome ウェブストア</a>
+			</div>
+			<br>
+			<h4>ご支援してくださる方　→　<a href="http://amzn.asia/0PhWJ5S" target="_blank" onclick="myGa('amazone','description','link');">🎁 ほしい物リスト 🎁</a></h4>
+			<h4>ゲームも作ってます　→　<a href="https://238g.github.io/Parace/238Games2.html" target="_blank" onclick="myGa('238Games2','description','link');">🐳 Vtuberゲームス 🐳</a></h4>
+			<h4>ご意見・ご要望・バグ報告　→　<a href="https://twitter.com/i10v35w33t" target="_blank" onclick="myGa('twitter','description','link');">🐥 開発者Twitter: @i10v35w33t 🐥</a></h4>
+			<h4>　　　　　　　　　　　　　→　<a href="https://marshmallow-qa.com/i10v35w33t?utm_medium=url_text&amp;utm_source=promotion" target="_blank" onclick="myGa('marshmallow','description','link');">📛 匿名投稿マシュマロ 📛</a></h4>
+			<br>
+			<h3>注意事項</h3>
+			<p>※保存した画像は「SS_[時間]_[動画タイトル].png」の名前で保存されます。</p>
+			<p>※画面内にボタンが表示されない場合は、ページを更新・リロードしてください。</p>
+			<p>※ダウンロード画像の保存場所を変更したい場合はこちらをご確認ください。</p>
+			<p><a href="https://pc-karuma.net/chrome-download-file-location/" target="_blank">Google Chrome - ファイルのダウンロード - 保存場所の確認・変更</a></p>
+			<br>
+			<h3>更新情報</h3>
+			<p>・2018年12月26日 リリース</p>
+		</div>
+
+		<footer>
+			<p><a href="238Games2.html" onclick="myGa('238Games2','footer','home');" target="_blank">Vtuberゲームス</a></p>
+			<p>Created by 抹茶。 <a href="https://twitter.com/i10v35w33t" target="_blank" onclick="myGa('twitter','footer','link');">@i10v35w33t</a></p>
+		</footer>
+	</div>
+
+	<script type="text/javascript">
+		function myGa(action,category,label,value){
+			if(__ENV!='prod')console.log(action,category,label,value);
+			gtag('event',action,{'event_category':category,'event_label':label,'value':value});
+		}
+	</script>
+
+	<div style="display: none;">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106767228-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-106767228-2');
+		</script>
+	</div>
+</body>
+</html>
