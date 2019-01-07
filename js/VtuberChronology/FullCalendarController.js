@@ -24,7 +24,7 @@ $(document).ready(function() {
 				dataType:'text',
 				cache:!1,
 				success:function(csv){
-					var events=formatCsv(csv);
+					var events=formatCsv2(csv);
 					if(events==!1)callback([{title:'通信エラー',start:Ymd()}]);
 					callback(events);
 				},
@@ -103,9 +103,32 @@ function formatCsv(csv){
 	return res;
 }
 
-function Ymd(){
-	var Y = new Date().getFullYear();
-	var m = ('0'+(new Date().getMonth()+1)).slice(-2);
-	var d = ('0'+(new Date().getDate())).slice(-2);
+function formatCsv2(csv){
+	var res=[];
+	var rows=csv.slice(0,-1).split('\n');
+	var header=rows[0].split(',');
+	for (var rowNum in rows) {
+		if(rowNum==0)continue;
+		var row=rows[rowNum].split(',');
+		var tmp={};
+		for(var columnNum in row){
+			if(columnNum==3&&row[3]){
+				var darr=row[3].split('-');
+				var dt=new Date(darr[0],Number(darr[1])-1,darr[2]);
+				dt.setDate(dt.getDate()+1);
+				row[3]=Ymd(dt);
+			}
+			tmp[header[columnNum]]=row[columnNum];
+		}
+		res.push(tmp);
+	}
+	return res;
+}
+
+function Ymd(dt){
+	var dt=dt||new Date();
+	var Y = dt.getFullYear();
+	var m = ('0'+(dt.getMonth()+1)).slice(-2);
+	var d = ('0'+(dt.getDate())).slice(-2);
 	return Y+'-'+m+'-'+d;
 }
