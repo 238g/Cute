@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>パパラッチャー</title>
+	<meta name="apple-mobile-web-app-title" content="パパラッチャー">
+	<meta name="theme-color" content="#000000">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+
+	<meta name="keywords" content="記者会見,謝罪会見,背景,カメラ音,フラッシュ,配信,配信者,YouTube,YouTuber,バーチャルYouTuber,Vtuber" />
+	<meta name="description" content="生放送などで記者会見や謝罪会見をしたい時に使えるフラッシュ機能です。1,5,10シャッターを用意しています。" />
+
+	<link rel="alternate" href="https://238g.github.io/Cute/paparazzi/" hreflang="jp" />
+	<!-- <link rel="alternate" href="https://238g.github.io/Cute/paparazzi/?lang=en" hreflang="en" /> -->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="HandheldFriendly" content="true" />
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- TwitterCard 876x438 -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@i10v35w33t" />
+	<meta property="og:url" content="https://238g.github.io/Cute/paparazzi/" />
+	<meta property="og:title" content="パパラッチャー">
+	<meta property="og:description" content="配信で謝罪会見したい時に使えるフラッシュ機能です。1,5,10シャッターを用意しています。">
+	<meta property="og:image" content="https://238g.github.io/Cute/paparazzi/assets/TwitterCard.jpg?180925">
+
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="assets/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicons/manifest.json">
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+	<link rel="shortcut icon" type="image/x-icon" href="assets/favicons/favicon.ico">
+
+	<!-- Vendor -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script
+		src="https://code.jquery.com/color/jquery.color-2.1.2.js"
+		integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8="
+		crossorigin="anonymous"></script>	
+	<script src="js/interact.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.4/dist/interact.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.15/howler.core.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+</head>
+<body>
+
+	<div class="wrapper">
+
+		<h1 class="title may_hide"><img src="assets/favicons/favicon-96x96.png" width="48" height="48">パパラッチャー</h1>
+		<div class="resize-container">
+			<div class="resize-drag"></div>
+		</div>
+
+		<div class="operator active">
+			<h3 class="may_hide">グリーンバックは拡大縮小ができます(<span class="size_text">640x400</span>)</h3>
+			<button class="fixed_resize_btn may_hide">サイズ固定</button>
+			<button class="shutter_click_btn" data-count=1>１パシャ</button>
+			<button class="shutter_click_btn" data-count=5>５パシャ</button>
+			<button class="shutter_click_btn" data-count=10>１０パシャ</button>
+			<button class="hide_btn">隠す</button>
+			<div class="slidecontainer may_hide">
+				<p>音量: <span id="volume"></span> <input type="range" min="0" max="100" value="50" class="slider" id="sliderRange"></p>
+			</div>
+			<div class="caution may_hide">
+				<h3>このサイトについて</h3>
+				<p>・配信で記者会見や謝罪会見したい時に使ってください。</p>
+				<p>・OBSではウィンドウキャプチャをご利用ください。クロマキーは緑で問題ございません。</p>
+				<p>・フラッシュで目がチカチカすることがありますのでご注意ください。バルス！</p>
+				<p>音素材:効果音ラボ(<a href="https://soundeffect-lab.info" target="_blank">https://soundeffect-lab.info/</a>)</p>
+			</div>
+			<div class="may_hide">
+				<a href="https://marshmallow-qa.com/i10v35w33t?utm_medium=url_text&utm_source=promotion" target="_blank">◎ご意見・ご要望</a>
+				<a href="https://238g.github.io/Parace/238Games2.html?page=service" target="_blank">◎その他サービス</a>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/function.js"></script>
+
+	<div style="display: none;">
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106767228-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-106767228-2');
+		</script>
+	</div>
+</body>
+</html>
