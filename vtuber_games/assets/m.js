@@ -43,6 +43,6 @@ $(function(){
   $('.rnd_img').each(function(i,c){
     var e=$(c);
     var info=__g[keys[keys.length*Math.random()<<0]];
-    e.html('<img src="'+(info.tc||__g[1050].tc)+'" class="w3-image" style="width:100%">');
+    e.html('<a href="'+info.url+'" target="_blank"><img src="'+(info.tc||__g[1050].tc)+'" class="w3-image" style="width:100%"><span class="w3-tag">'+(info.tc?info.title:__g[1050].title)+'</span></a>');
   });
 });
