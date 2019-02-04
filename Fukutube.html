@@ -115,6 +115,7 @@
 
 	<div class="col-sm-2">
 		<button class="btn-danger hide_btn">上部を隠す</button>
+		<p>背景色: <input class="color_picker" type="color" value="#121212" /></p>
 	</div>
 
 	<script type="text/javascript">
@@ -172,6 +173,9 @@
 			}
 			return false;
 		}
+		$('.color_picker').change(function(a,b){
+			$('body').css('background-color', $(this).val());
+		});
 	</script>
 
 	<div style="display: none;">
