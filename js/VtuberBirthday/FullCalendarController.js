@@ -49,7 +49,7 @@ $(document).ready(function() {
 			dialog.html(
 				'<p>'+
 					(ev.title?'<p><b>'+ev.title+'</b></p>':'')+
-					(ev.descImg?'<img src="'+ev.descImg+'" /><br>':ev.img?'<img src="'+ev.img+'" /><br>':'')+
+					(ev.descImg&&'<img src="'+ev.descImg+'" /><br>')+
 					'<br>'+
 					(ev.subTitle?'<p>'+ev.subTitle+'</p>':'')+
 					(ev.desc?'<p>'+ev.desc+'</p>':'')+
@@ -86,7 +86,7 @@ $(document).ready(function() {
 			ttl.css('font-weight','bold');
 			ev.subTitle&&ttl.append('<p>'+ev.subTitle+'</p>');
 			// ev.desc&&ttl.append('<p>'+ev.desc+'</p>');
-			ev.img&&$(el).find('.fc-list-item-marker').html('<img src="'+ev.img+'" />');
+			ev.descImg&&$(el).find('.fc-list-item-marker').html('<img src="'+ev.descImg+'" width=60 height=60 />');
 		},
 		//loading->events->viewRender->loading->events(callback)->eventRender
 	});
