@@ -129,7 +129,8 @@
 				+'<select>'
 				+option
 				+'</select>'
-				+'<button class="OK btn-warning">OK</button><br>'
+				+'<button class="OK btn-warning">OK</button>'
+				+'<button class="close_btn btn-success">閉</button><br>'
 				+'<div id="ytplayer_'+i+'"></div><br>'
 				+'</div>'
 			);
@@ -152,6 +153,16 @@
 					},
 				});
 			}
+		});
+		$('.close_btn').click(function(){
+			var area_elem = $(this).parent();
+			var input_elem = area_elem.find('.input');
+			var id = (input_elem[0].id).split('_')[1];
+			// input_elem.val('');
+			var player = $('#ytplayer_'+id);
+			player.width(0);
+			player.height(0);
+			player[0].src="";
 		});
 		$('.hide_btn').click(function () {
 			if($('.hide_target').css('display') == 'block'){
